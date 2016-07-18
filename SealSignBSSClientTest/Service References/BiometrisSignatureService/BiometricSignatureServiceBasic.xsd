@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SealSignBSSTypes" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SealSignBSSTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://p11p-74.11paths.local:8731/SealSignBSSService/BiometricSignatureServiceBasic.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://p11p-74.11paths.local:8731/SealSignBSSService/BiometricSignatureServiceBasic.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/SealSignDSSTypes" />
+  <xs:simpleType name="BiometricSignatureType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Default" />
+      <xs:enumeration value="Signature" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BiometricSignatureType" nillable="true" type="tns:BiometricSignatureType" />
+  <xs:simpleType name="BiometricSignatureFlags">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Default">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="VerifyIdentity">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="IncludeTimestamp">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="BiometricImageAsWidgetBackground">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="IncludeHashWatermark">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">16</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="IncludeAttachments">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">32</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="ExcludeDocumentMetadata">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">64</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="IncludeIdWatermark">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">128</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="IncludeAccountWatermark">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">256</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="XMLBiometricSignatureDetached">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">512</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="BiometricSignatureFlags" nillable="true" type="tns:BiometricSignatureFlags" />
+  <xs:complexType name="BiometricSignatureParameters">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="advancedImageParameters" nillable="true" type="tns:ArrayOfBiometricImageParameters" />
+      <xs:element minOccurs="0" name="documentPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="imageParameters" nillable="true" type="tns:BiometricImageParameters" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BiometricSignatureParameters" nillable="true" type="tns:BiometricSignatureParameters" />
+  <xs:complexType name="ArrayOfBiometricImageParameters">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BiometricImageParameters" nillable="true" type="tns:BiometricImageParameters" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBiometricImageParameters" nillable="true" type="tns:ArrayOfBiometricImageParameters" />
+  <xs:complexType name="BiometricImageParameters">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="attachmentName" nillable="true" type="xs:string" />
+      <xs:element name="autoSize" type="xs:boolean" />
+      <xs:element name="height" type="xs:int" />
+      <xs:element minOccurs="0" name="imageTokenText" nillable="true" type="xs:string" />
+      <xs:element name="offsetX" type="xs:int" />
+      <xs:element name="offsetY" type="xs:int" />
+      <xs:element name="onAllPages" type="xs:boolean" />
+      <xs:element name="onLastPage" type="xs:boolean" />
+      <xs:element name="onPage" type="xs:int" />
+      <xs:element name="pageOffset" type="xs:int" />
+      <xs:element name="rotate" type="xs:int" />
+      <xs:element name="signatureVisible" type="xs:boolean" />
+      <xs:element name="width" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BiometricImageParameters" nillable="true" type="tns:BiometricImageParameters" />
+  <xs:simpleType name="BiometricVerificationFlags">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Default">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="IncludeDSSInfo">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="BiometricVerificationFlags" nillable="true" type="tns:BiometricVerificationFlags" />
+  <xs:complexType name="BiometricVerificationParameters">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentPassword" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BiometricVerificationParameters" nillable="true" type="tns:BiometricVerificationParameters" />
+  <xs:complexType name="BiometricSignatureVerification">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SealSignDSSTypes" minOccurs="0" name="dssResult" nillable="true" type="q1:SignatureVerification" />
+      <xs:element minOccurs="0" name="result" type="tns:BiometricVerificationResult" />
+      <xs:element minOccurs="0" name="signatures" nillable="true" type="tns:ArrayOfBiometricSignatureReference" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BiometricSignatureVerification" nillable="true" type="tns:BiometricSignatureVerification" />
+  <xs:simpleType name="BiometricVerificationResult">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SignatureFound" />
+      <xs:enumeration value="SignatureNotFound" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BiometricVerificationResult" nillable="true" type="tns:BiometricVerificationResult" />
+  <xs:complexType name="ArrayOfBiometricSignatureReference">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BiometricSignatureReference" nillable="true" type="tns:BiometricSignatureReference" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBiometricSignatureReference" nillable="true" type="tns:ArrayOfBiometricSignatureReference" />
+  <xs:complexType name="BiometricSignatureReference">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="score" type="xs:double" />
+      <xs:element minOccurs="0" name="signatureAccount" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="signatureID" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SealSignDSSTypes" minOccurs="0" name="signatureProfile" type="q2:SignatureProfile" />
+      <xs:element minOccurs="0" name="signatureStatus" type="tns:BiometricVerificationStatus" />
+      <xs:element minOccurs="0" name="signatureType" type="tns:BiometricSignatureType" />
+      <xs:element minOccurs="0" name="signatureUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="signingTime" type="xs:dateTime" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SealSignDSSTypes" minOccurs="0" name="timestamp" nillable="true" type="q3:TimestampReference" />
+      <xs:element minOccurs="0" name="version" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BiometricSignatureReference" nillable="true" type="tns:BiometricSignatureReference" />
+  <xs:simpleType name="BiometricVerificationStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Match" />
+      <xs:enumeration value="NoMatch" />
+      <xs:enumeration value="SignatureCorrupted" />
+      <xs:enumeration value="Failure" />
+      <xs:enumeration value="Unknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BiometricVerificationStatus" nillable="true" type="tns:BiometricVerificationStatus" />
+</xs:schema>

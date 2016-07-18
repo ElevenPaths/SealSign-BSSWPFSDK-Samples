@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4e229bbf-3dc8-45d4-aafd-7488949a212a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8731/SealSignBSSService/BiometricSignatureServiceBasic.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BiometricSignatureServiceBasic.xsd" MetadataType="Schema" ID="52d87567-8c0b-4326-afea-4cd3252e72fe" SourceId="1" SourceUrl="http://p11p-74.11paths.local:8731/SealSignBSSService/BiometricSignatureServiceBasic.svc?xsd=xsd4" />
+    <MetadataFile FileName="BiometricSignatureServiceBasic1.xsd" MetadataType="Schema" ID="9d632683-cc94-4017-bff5-d3e1924f8b7d" SourceId="1" SourceUrl="http://p11p-74.11paths.local:8731/SealSignBSSService/BiometricSignatureServiceBasic.svc?xsd=xsd0" />
+    <MetadataFile FileName="BiometricSignatureServiceBasic2.xsd" MetadataType="Schema" ID="317a020d-cd72-479f-9bae-5376f5751c11" SourceId="1" SourceUrl="http://p11p-74.11paths.local:8731/SealSignBSSService/BiometricSignatureServiceBasic.svc?xsd=xsd2" />
+    <MetadataFile FileName="BiometricSignatureServiceBasic3.xsd" MetadataType="Schema" ID="8c68df1b-ce61-45fe-9c15-8ddb0e7961dd" SourceId="1" SourceUrl="http://p11p-74.11paths.local:8731/SealSignBSSService/BiometricSignatureServiceBasic.svc?xsd=xsd1" />
+    <MetadataFile FileName="BiometricSignatureServiceBasic.wsdl" MetadataType="Wsdl" ID="8ae56b2d-49d5-4cf1-a350-24b2f6784328" SourceId="1" SourceUrl="http://p11p-74.11paths.local:8731/SealSignBSSService/BiometricSignatureServiceBasic.svc?wsdl" />
+    <MetadataFile FileName="BiometricSignatureServiceBasic4.xsd" MetadataType="Schema" ID="da899a98-dafd-4319-90b4-100ce78b7cdf" SourceId="1" SourceUrl="http://p11p-74.11paths.local:8731/SealSignBSSService/BiometricSignatureServiceBasic.svc?xsd=xsd3" />
+    <MetadataFile FileName="BiometricSignatureServiceBasic.disco" MetadataType="Disco" ID="7ad6adf8-4782-447f-bab1-fa9bdc548224" SourceId="1" SourceUrl="http://p11p-74.11paths.local:8731/SealSignBSSService/BiometricSignatureServiceBasic.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

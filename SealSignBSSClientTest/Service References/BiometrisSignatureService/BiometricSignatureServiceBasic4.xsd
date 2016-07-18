@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SealSignDSSTypes" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SealSignDSSTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://p11p-74.11paths.local:8731/SealSignBSSService/BiometricSignatureServiceBasic.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:simpleType name="SignatureProfile">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Default" />
+      <xs:enumeration value="CMS" />
+      <xs:enumeration value="CAdESBES" />
+      <xs:enumeration value="CAdEST" />
+      <xs:enumeration value="CAdESC" />
+      <xs:enumeration value="CAdESX" />
+      <xs:enumeration value="CAdESXL" />
+      <xs:enumeration value="CAdESA" />
+      <xs:enumeration value="XMLDigSig" />
+      <xs:enumeration value="XAdESBES" />
+      <xs:enumeration value="XAdEST" />
+      <xs:enumeration value="XAdESC" />
+      <xs:enumeration value="XAdESX" />
+      <xs:enumeration value="XAdESXL" />
+      <xs:enumeration value="XAdESA" />
+      <xs:enumeration value="PDF" />
+      <xs:enumeration value="PAdESBasic" />
+      <xs:enumeration value="PAdESBES" />
+      <xs:enumeration value="PAdESLTV" />
+      <xs:enumeration value="PAdESXML" />
+      <xs:enumeration value="Office" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SignatureProfile" nillable="true" type="tns:SignatureProfile" />
+  <xs:simpleType name="SignatureFlags">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Default">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="ValidateChain">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="CheckRevocationStatus">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="XMLAddXPathRemoveSignatureTransform">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="XMLAdESIncludeSignerRole">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">16</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="XMLAdESExplicitPolicy">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">32</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="XMLAdESXType2">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">64</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="CMSAdESExplicitPolicy">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">128</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="CMSAdESXType2">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">256</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="PDFAdESIncludeTimestamp">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">512</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="PDFAdESIncludeRevocationInfo">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1024</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="PDFAdESExplicitPolicy">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2048</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="IncludeLocation">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4096</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="XMLAdESVersion122">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8192</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="XMLAdESIncludeKeyValue">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">16384</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="XMLAdESVersion132">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">32768</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="PDFAdESUseParametersInWidget">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">65536</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="XMLAdESPrettySignature">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">131072</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="PDFAdESHideTimestampInWidget">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">262144</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="XMLAdExcludeCertFromSignedProperties">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">524288</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="SignatureFlags" nillable="true" type="tns:SignatureFlags" />
+  <xs:complexType name="SignatureParameters">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="algorithmCaption" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="algorithmInfo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="city" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="country" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="header" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pdfParameters" nillable="true" type="tns:PDFSignatureParameters" />
+      <xs:element minOccurs="0" name="policyCMSQualifierURI" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="policyDigest" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="policyIdentifier" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="postalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="reference" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="signerCaption" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="signerInfo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="signerRole" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="state" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="timestampBackupServerId" type="xs:int" />
+      <xs:element minOccurs="0" name="timestampServerId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SignatureParameters" nillable="true" type="tns:SignatureParameters" />
+  <xs:complexType name="PDFSignatureParameters">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PDFPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PDFSignatureBackground" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="PDFSignatureBackgroundHeight" type="xs:int" />
+      <xs:element minOccurs="0" name="PDFSignatureBackgroundStretch" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PDFSignatureBackgroundWidth" type="xs:int" />
+      <xs:element minOccurs="0" name="PDFSignatureFieldName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PDFSignatureFilterOnlyDocSignatures" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PDFSignatureVisible" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PDFSignatureWidgetAutoPos" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PDFSignatureWidgetAutoSize" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PDFSignatureWidgetHeight" type="xs:int" />
+      <xs:element minOccurs="0" name="PDFSignatureWidgetHideText" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PDFSignatureWidgetImageTokenText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PDFSignatureWidgetOffsetX" type="xs:int" />
+      <xs:element minOccurs="0" name="PDFSignatureWidgetOffsetY" type="xs:int" />
+      <xs:element minOccurs="0" name="PDFSignatureWidgetOnAllPages" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PDFSignatureWidgetOnLastPage" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PDFSignatureWidgetOnPage" type="xs:int" />
+      <xs:element minOccurs="0" name="PDFSignatureWidgetPageOffset" type="xs:int" />
+      <xs:element minOccurs="0" name="PDFSignatureWidgetRotate" type="xs:int" />
+      <xs:element minOccurs="0" name="PDFSignatureWidgetWidth" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PDFSignatureParameters" nillable="true" type="tns:PDFSignatureParameters" />
+  <xs:complexType name="SignatureVerification">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:VerificationResult" />
+      <xs:element minOccurs="0" name="signatures" nillable="true" type="tns:ArrayOfSignatureReference" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SignatureVerification" nillable="true" type="tns:SignatureVerification" />
+  <xs:simpleType name="VerificationResult">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Valid" />
+      <xs:enumeration value="IncompleteValidation" />
+      <xs:enumeration value="Invalid" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="VerificationResult" nillable="true" type="tns:VerificationResult" />
+  <xs:complexType name="ArrayOfSignatureReference">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SignatureReference" nillable="true" type="tns:SignatureReference" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSignatureReference" nillable="true" type="tns:ArrayOfSignatureReference" />
+  <xs:complexType name="SignatureReference">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="counterSignatures" nillable="true" type="tns:ArrayOfSignatureReference" />
+      <xs:element minOccurs="0" name="hashAlgorithm" type="tns:HashAlgorithm" />
+      <xs:element minOccurs="0" name="signatureCertificate" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="signatureFlags" type="tns:SignatureFlags" />
+      <xs:element minOccurs="0" name="signatureID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="signatureProfile" type="tns:SignatureProfile" />
+      <xs:element minOccurs="0" name="signatureStatus" type="tns:VerificationStatus" />
+      <xs:element minOccurs="0" name="signatureType" type="tns:SignatureType" />
+      <xs:element minOccurs="0" name="signingTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="timestamps" nillable="true" type="tns:ArrayOfTimestampReference" />
+      <xs:element minOccurs="0" name="validationTimestamps" nillable="true" type="tns:ArrayOfTimestampReference" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SignatureReference" nillable="true" type="tns:SignatureReference" />
+  <xs:simpleType name="HashAlgorithm">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Default" />
+      <xs:enumeration value="RIPEMD160" />
+      <xs:enumeration value="MD5" />
+      <xs:enumeration value="SHA1" />
+      <xs:enumeration value="SHA256" />
+      <xs:enumeration value="SHA384" />
+      <xs:enumeration value="SHA512" />
+      <xs:enumeration value="SSL3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="HashAlgorithm" nillable="true" type="tns:HashAlgorithm" />
+  <xs:simpleType name="VerificationStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Valid" />
+      <xs:enumeration value="SignatureCorrupted" />
+      <xs:enumeration value="SignerNotFound" />
+      <xs:enumeration value="IncompleteChain" />
+      <xs:enumeration value="BadCountersignature" />
+      <xs:enumeration value="BadTimestamp" />
+      <xs:enumeration value="CertificateExpired" />
+      <xs:enumeration value="CertificateRevoked" />
+      <xs:enumeration value="CertificateCorrupted" />
+      <xs:enumeration value="UntrustedCA" />
+      <xs:enumeration value="RevInfoNotFound" />
+      <xs:enumeration value="TimestampInfoNotFound" />
+      <xs:enumeration value="Failure" />
+      <xs:enumeration value="CertificateMalformed" />
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="InvalidPolicy" />
+      <xs:enumeration value="NotValidForUsage" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="VerificationStatus" nillable="true" type="tns:VerificationStatus" />
+  <xs:simpleType name="SignatureType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Default" />
+      <xs:enumeration value="Enveloped" />
+      <xs:enumeration value="Enveloping" />
+      <xs:enumeration value="Detached" />
+      <xs:enumeration value="DetachedInternal" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SignatureType" nillable="true" type="tns:SignatureType" />
+  <xs:complexType name="ArrayOfTimestampReference">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TimestampReference" nillable="true" type="tns:TimestampReference" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTimestampReference" nillable="true" type="tns:ArrayOfTimestampReference" />
+  <xs:complexType name="TimestampReference">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="timestampSignatures" nillable="true" type="tns:ArrayOfSignatureReference" />
+      <xs:element minOccurs="0" name="timestampSuitable" type="xs:boolean" />
+      <xs:element minOccurs="0" name="timestampTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="timestampType" type="tns:TimestampType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TimestampReference" nillable="true" type="tns:TimestampReference" />
+  <xs:simpleType name="TimestampType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Generic" />
+      <xs:enumeration value="ESC" />
+      <xs:enumeration value="CertsAndCRLs" />
+      <xs:enumeration value="Archive" />
+      <xs:enumeration value="Archive2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TimestampType" nillable="true" type="tns:TimestampType" />
+</xs:schema>

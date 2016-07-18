@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SealSignBASTypes" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SealSignBASTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="BiometricAuthenticationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Signature" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BiometricAuthenticationType" nillable="true" type="tns:BiometricAuthenticationType" />
+</xs:schema>

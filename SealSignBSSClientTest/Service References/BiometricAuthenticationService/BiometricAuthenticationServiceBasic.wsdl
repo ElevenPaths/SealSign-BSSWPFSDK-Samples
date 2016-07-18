@@ -1,0 +1,1485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BiometricAuthenticationServiceBasic" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_IBiometricAuthenticationServiceBasic_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <http:NegotiateAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SymmetricBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:ProtectionToken>
+              <wsp:Policy>
+                <sp:SpnegoContextToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+                  <wsp:Policy>
+                    <sp:RequireDerivedKeys />
+                  </wsp:Policy>
+                </sp:SpnegoContextToken>
+              </wsp:Policy>
+            </sp:ProtectionToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+            <sp:EncryptSignature />
+            <sp:OnlySignEntireHeadersAndBody />
+          </wsp:Policy>
+        </sp:SymmetricBinding>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportRefKeyIdentifier />
+            <sp:MustSupportRefIssuerSerial />
+            <sp:MustSupportRefThumbprint />
+            <sp:MustSupportRefEncryptedKey />
+          </wsp:Policy>
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust10>
+        <wsoma:OptimizedMimeSerialization xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_Enable_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_Enable_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_Enable_SealSignDSSFaultContractFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_Disable_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_Disable_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_Disable_SealSignDSSFaultContractFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_Remove_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_Remove_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_Remove_SealSignDSSFaultContractFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_RemoveOnBehalfOf_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_RemoveOnBehalfOf_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_RemoveOnBehalfOf_SealSignDSSFaultContractFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_Enroll_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_Enroll_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_Enroll_SealSignDSSFaultContractFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_EnrollOnBehalfOf_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_EnrollOnBehalfOf_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_EnrollOnBehalfOf_SealSignDSSFaultContractFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_Verify_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_Verify_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_Verify_SealSignDSSFaultContractFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_VerifyOnBehalfOf_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_VerifyOnBehalfOf_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_VerifyOnBehalfOf_SealSignDSSFaultContractFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_HasEnrollment_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_HasEnrollment_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_HasEnrollment_SealSignDSSFaultContractFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_HasEnrollmentOnBehalfOf_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_HasEnrollmentOnBehalfOf_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic_HasEnrollmentOnBehalfOf_SealSignDSSFaultContractFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IBiometricAuthenticationServiceBasic1_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsoma:OptimizedMimeSerialization xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="BasicHttpBinding_IBiometricAuthenticationServiceBasic1_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <http:BasicAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://p11p-74.11paths.local:8731/SealSignBASService/BiometricAuthenticationServiceBasic.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://p11p-74.11paths.local:8731/SealSignBASService/BiometricAuthenticationServiceBasic.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/SealSignBASService" />
+      <xsd:import schemaLocation="http://p11p-74.11paths.local:8731/SealSignBASService/BiometricAuthenticationServiceBasic.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://p11p-74.11paths.local:8731/SealSignBASService/BiometricAuthenticationServiceBasic.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SealSignBASTypes" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_Enable_InputMessage">
+    <wsdl:part name="parameters" element="tns:Enable" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_Enable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_Enable_SealSignDSSFaultContractFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/SealSignBASService" name="detail" element="q1:SealSignDSSFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_Disable_InputMessage">
+    <wsdl:part name="parameters" element="tns:Disable" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_Disable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_Disable_SealSignDSSFaultContractFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/SealSignBASService" name="detail" element="q2:SealSignDSSFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_Remove_InputMessage">
+    <wsdl:part name="parameters" element="tns:Remove" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_Remove_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_Remove_SealSignDSSFaultContractFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/SealSignBASService" name="detail" element="q3:SealSignDSSFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_RemoveOnBehalfOf_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveOnBehalfOf" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_RemoveOnBehalfOf_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveOnBehalfOfResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_RemoveOnBehalfOf_SealSignDSSFaultContractFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/SealSignBASService" name="detail" element="q4:SealSignDSSFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_Enroll_InputMessage">
+    <wsdl:part name="parameters" element="tns:Enroll" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_Enroll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnrollResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_Enroll_SealSignDSSFaultContractFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/SealSignBASService" name="detail" element="q5:SealSignDSSFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_EnrollOnBehalfOf_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnrollOnBehalfOf" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_EnrollOnBehalfOf_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnrollOnBehalfOfResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_EnrollOnBehalfOf_SealSignDSSFaultContractFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/SealSignBASService" name="detail" element="q6:SealSignDSSFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_Verify_InputMessage">
+    <wsdl:part name="parameters" element="tns:Verify" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_Verify_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_Verify_SealSignDSSFaultContractFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/SealSignBASService" name="detail" element="q7:SealSignDSSFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_VerifyOnBehalfOf_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyOnBehalfOf" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_VerifyOnBehalfOf_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerifyOnBehalfOfResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_VerifyOnBehalfOf_SealSignDSSFaultContractFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/SealSignBASService" name="detail" element="q8:SealSignDSSFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_HasEnrollment_InputMessage">
+    <wsdl:part name="parameters" element="tns:HasEnrollment" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_HasEnrollment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HasEnrollmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_HasEnrollment_SealSignDSSFaultContractFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/SealSignBASService" name="detail" element="q9:SealSignDSSFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_HasEnrollmentOnBehalfOf_InputMessage">
+    <wsdl:part name="parameters" element="tns:HasEnrollmentOnBehalfOf" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_HasEnrollmentOnBehalfOf_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HasEnrollmentOnBehalfOfResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBiometricAuthenticationServiceBasic_HasEnrollmentOnBehalfOf_SealSignDSSFaultContractFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/SealSignBASService" name="detail" element="q10:SealSignDSSFaultContract" />
+  </wsdl:message>
+  <wsdl:portType name="IBiometricAuthenticationServiceBasic">
+    <wsdl:operation name="Enable">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/Enable" message="tns:IBiometricAuthenticationServiceBasic_Enable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/EnableResponse" message="tns:IBiometricAuthenticationServiceBasic_Enable_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/EnableSealSignDSSFaultContractFault" name="SealSignDSSFaultContractFault" message="tns:IBiometricAuthenticationServiceBasic_Enable_SealSignDSSFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Disable">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/Disable" message="tns:IBiometricAuthenticationServiceBasic_Disable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/DisableResponse" message="tns:IBiometricAuthenticationServiceBasic_Disable_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/DisableSealSignDSSFaultContractFault" name="SealSignDSSFaultContractFault" message="tns:IBiometricAuthenticationServiceBasic_Disable_SealSignDSSFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Remove">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/Remove" message="tns:IBiometricAuthenticationServiceBasic_Remove_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/RemoveResponse" message="tns:IBiometricAuthenticationServiceBasic_Remove_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/RemoveSealSignDSSFaultContractFault" name="SealSignDSSFaultContractFault" message="tns:IBiometricAuthenticationServiceBasic_Remove_SealSignDSSFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveOnBehalfOf">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/RemoveOnBehalfOf" message="tns:IBiometricAuthenticationServiceBasic_RemoveOnBehalfOf_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/RemoveOnBehalfOfResponse" message="tns:IBiometricAuthenticationServiceBasic_RemoveOnBehalfOf_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/RemoveOnBehalfOfSealSignDSSFaultContractFault" name="SealSignDSSFaultContractFault" message="tns:IBiometricAuthenticationServiceBasic_RemoveOnBehalfOf_SealSignDSSFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Enroll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/Enroll" message="tns:IBiometricAuthenticationServiceBasic_Enroll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/EnrollResponse" message="tns:IBiometricAuthenticationServiceBasic_Enroll_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/EnrollSealSignDSSFaultContractFault" name="SealSignDSSFaultContractFault" message="tns:IBiometricAuthenticationServiceBasic_Enroll_SealSignDSSFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EnrollOnBehalfOf">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/EnrollOnBehalfOf" message="tns:IBiometricAuthenticationServiceBasic_EnrollOnBehalfOf_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/EnrollOnBehalfOfResponse" message="tns:IBiometricAuthenticationServiceBasic_EnrollOnBehalfOf_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/EnrollOnBehalfOfSealSignDSSFaultContractFault" name="SealSignDSSFaultContractFault" message="tns:IBiometricAuthenticationServiceBasic_EnrollOnBehalfOf_SealSignDSSFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Verify">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/Verify" message="tns:IBiometricAuthenticationServiceBasic_Verify_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/VerifyResponse" message="tns:IBiometricAuthenticationServiceBasic_Verify_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/VerifySealSignDSSFaultContractFault" name="SealSignDSSFaultContractFault" message="tns:IBiometricAuthenticationServiceBasic_Verify_SealSignDSSFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyOnBehalfOf">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/VerifyOnBehalfOf" message="tns:IBiometricAuthenticationServiceBasic_VerifyOnBehalfOf_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/VerifyOnBehalfOfResponse" message="tns:IBiometricAuthenticationServiceBasic_VerifyOnBehalfOf_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/VerifyOnBehalfOfSealSignDSSFaultContractFault" name="SealSignDSSFaultContractFault" message="tns:IBiometricAuthenticationServiceBasic_VerifyOnBehalfOf_SealSignDSSFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HasEnrollment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/HasEnrollment" message="tns:IBiometricAuthenticationServiceBasic_HasEnrollment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/HasEnrollmentResponse" message="tns:IBiometricAuthenticationServiceBasic_HasEnrollment_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/HasEnrollmentSealSignDSSFaultContractFault" name="SealSignDSSFaultContractFault" message="tns:IBiometricAuthenticationServiceBasic_HasEnrollment_SealSignDSSFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HasEnrollmentOnBehalfOf">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/HasEnrollmentOnBehalfOf" message="tns:IBiometricAuthenticationServiceBasic_HasEnrollmentOnBehalfOf_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/HasEnrollmentOnBehalfOfResponse" message="tns:IBiometricAuthenticationServiceBasic_HasEnrollmentOnBehalfOf_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBiometricAuthenticationServiceBasic/HasEnrollmentOnBehalfOfSealSignDSSFaultContractFault" name="SealSignDSSFaultContractFault" message="tns:IBiometricAuthenticationServiceBasic_HasEnrollmentOnBehalfOf_SealSignDSSFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IBiometricAuthenticationServiceBasic" type="tns:IBiometricAuthenticationServiceBasic">
+    <wsp:PolicyReference URI="#BasicHttpBinding_IBiometricAuthenticationServiceBasic_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Enable">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Enable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Disable">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Disable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Remove">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Remove" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveOnBehalfOf">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/RemoveOnBehalfOf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Enroll">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Enroll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="EnrollOnBehalfOf">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/EnrollOnBehalfOf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Verify">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Verify" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyOnBehalfOf">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/VerifyOnBehalfOf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="HasEnrollment">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/HasEnrollment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="HasEnrollmentOnBehalfOf">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/HasEnrollmentOnBehalfOf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSHttpBinding_IBiometricAuthenticationServiceBasic" type="tns:IBiometricAuthenticationServiceBasic">
+    <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Enable">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Enable" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_Enable_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_Enable_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_Enable_SealSignDSSFaultContractFault_Fault" />
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Disable">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Disable" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_Disable_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_Disable_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_Disable_SealSignDSSFaultContractFault_Fault" />
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Remove">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Remove" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_Remove_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_Remove_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_Remove_SealSignDSSFaultContractFault_Fault" />
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveOnBehalfOf">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/RemoveOnBehalfOf" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_RemoveOnBehalfOf_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_RemoveOnBehalfOf_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_RemoveOnBehalfOf_SealSignDSSFaultContractFault_Fault" />
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Enroll">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Enroll" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_Enroll_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_Enroll_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_Enroll_SealSignDSSFaultContractFault_Fault" />
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="EnrollOnBehalfOf">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/EnrollOnBehalfOf" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_EnrollOnBehalfOf_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_EnrollOnBehalfOf_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_EnrollOnBehalfOf_SealSignDSSFaultContractFault_Fault" />
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Verify">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Verify" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_Verify_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_Verify_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_Verify_SealSignDSSFaultContractFault_Fault" />
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyOnBehalfOf">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/VerifyOnBehalfOf" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_VerifyOnBehalfOf_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_VerifyOnBehalfOf_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_VerifyOnBehalfOf_SealSignDSSFaultContractFault_Fault" />
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="HasEnrollment">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/HasEnrollment" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_HasEnrollment_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_HasEnrollment_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_HasEnrollment_SealSignDSSFaultContractFault_Fault" />
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="HasEnrollmentOnBehalfOf">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/HasEnrollmentOnBehalfOf" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_HasEnrollmentOnBehalfOf_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_HasEnrollmentOnBehalfOf_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic_HasEnrollmentOnBehalfOf_SealSignDSSFaultContractFault_Fault" />
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSHttpBinding_IBiometricAuthenticationServiceBasic1" type="tns:IBiometricAuthenticationServiceBasic">
+    <wsp:PolicyReference URI="#WSHttpBinding_IBiometricAuthenticationServiceBasic1_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Enable">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Enable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Disable">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Disable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Remove">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Remove" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveOnBehalfOf">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/RemoveOnBehalfOf" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Enroll">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Enroll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="EnrollOnBehalfOf">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/EnrollOnBehalfOf" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Verify">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Verify" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyOnBehalfOf">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/VerifyOnBehalfOf" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="HasEnrollment">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/HasEnrollment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="HasEnrollmentOnBehalfOf">
+      <soap12:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/HasEnrollmentOnBehalfOf" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap12:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IBiometricAuthenticationServiceBasic1" type="tns:IBiometricAuthenticationServiceBasic">
+    <wsp:PolicyReference URI="#BasicHttpBinding_IBiometricAuthenticationServiceBasic1_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Enable">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Enable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Disable">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Disable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Remove">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Remove" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveOnBehalfOf">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/RemoveOnBehalfOf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Enroll">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Enroll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="EnrollOnBehalfOf">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/EnrollOnBehalfOf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Verify">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Verify" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyOnBehalfOf">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/VerifyOnBehalfOf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="HasEnrollment">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/HasEnrollment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="HasEnrollmentOnBehalfOf">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/HasEnrollmentOnBehalfOf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IBiometricAuthenticationServiceBasic2" type="tns:IBiometricAuthenticationServiceBasic">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Enable">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Enable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Disable">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Disable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Remove">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Remove" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveOnBehalfOf">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/RemoveOnBehalfOf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Enroll">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Enroll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="EnrollOnBehalfOf">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/EnrollOnBehalfOf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Verify">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/Verify" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyOnBehalfOf">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/VerifyOnBehalfOf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="HasEnrollment">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/HasEnrollment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="HasEnrollmentOnBehalfOf">
+      <soap:operation soapAction="http://tempuri.org/IBiometricAuthenticationServiceBasic/HasEnrollmentOnBehalfOf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SealSignDSSFaultContractFault">
+        <soap:fault use="literal" name="SealSignDSSFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BiometricAuthenticationServiceBasic">
+    <wsdl:port name="BasicHttpBinding_IBiometricAuthenticationServiceBasic" binding="tns:BasicHttpBinding_IBiometricAuthenticationServiceBasic">
+      <soap:address location="http://p11p-74.11paths.local:8731/SealSignBASService/BiometricAuthenticationServiceBasic.svc" />
+    </wsdl:port>
+    <wsdl:port name="WSHttpBinding_IBiometricAuthenticationServiceBasic" binding="tns:WSHttpBinding_IBiometricAuthenticationServiceBasic">
+      <soap12:address location="http://p11p-74.11paths.local:8731/SealSignBASService/BiometricAuthenticationServiceBasic.svc/WSI" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://p11p-74.11paths.local:8731/SealSignBASService/BiometricAuthenticationServiceBasic.svc/WSI</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="WSHttpBinding_IBiometricAuthenticationServiceBasic1" binding="tns:WSHttpBinding_IBiometricAuthenticationServiceBasic1">
+      <soap12:address location="http://p11p-74.11paths.local:8731/SealSignBASService/BiometricAuthenticationServiceBasic.svc/WS" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://p11p-74.11paths.local:8731/SealSignBASService/BiometricAuthenticationServiceBasic.svc/WS</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IBiometricAuthenticationServiceBasic1" binding="tns:BasicHttpBinding_IBiometricAuthenticationServiceBasic">
+      <soap:address location="http://p11p-74.11paths.local:8731/SealSignBASService/BiometricAuthenticationServiceBasic.svc/BI" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IBiometricAuthenticationServiceBasic2" binding="tns:BasicHttpBinding_IBiometricAuthenticationServiceBasic1">
+      <soap:address location="http://p11p-74.11paths.local:8731/SealSignBASService/BiometricAuthenticationServiceBasic.svc/BB" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IBiometricAuthenticationServiceBasic3" binding="tns:BasicHttpBinding_IBiometricAuthenticationServiceBasic2">
+      <soap:address location="http://p11p-74.11paths.local:8731/SealSignBASService/BiometricAuthenticationServiceBasic.svc/B" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

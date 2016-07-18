@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{A6DBB42E-1D58-4908-95AA-78C9DA6976B7}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\Interop.wgssSTU.dll = deploy\Interop.wgssSTU.dll
+		deploy\SealSignBSSClientLibrary.dll = deploy\SealSignBSSClientLibrary.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SealSignBSSClientTest", "SealSignBSSClientTest\SealSignBSSClientTest.csproj", "{7D1EC692-FD51-4756-B7CF-6750A65ECC77}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D1EC692-FD51-4756-B7CF-6750A65ECC77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D1EC692-FD51-4756-B7CF-6750A65ECC77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D1EC692-FD51-4756-B7CF-6750A65ECC77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D1EC692-FD51-4756-B7CF-6750A65ECC77}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

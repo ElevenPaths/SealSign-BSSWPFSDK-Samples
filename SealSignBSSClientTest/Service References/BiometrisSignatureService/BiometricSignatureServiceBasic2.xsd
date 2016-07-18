@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/SealSignBSSService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SealSignBSSService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://p11p-74.11paths.local:8731/SealSignBSSService/BiometricSignatureServiceBasic.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://p11p-74.11paths.local:8731/SealSignBSSService/BiometricSignatureServiceBasic.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/SealSignBSSTypes" />
+  <xs:import schemaLocation="http://p11p-74.11paths.local:8731/SealSignBSSService/BiometricSignatureServiceBasic.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/SealSignDSSTypes" />
+  <xs:complexType name="SealSignDSSFaultContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="errorCode" type="xs:unsignedInt" />
+      <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="stackTrace" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SealSignDSSFaultContract" nillable="true" type="tns:SealSignDSSFaultContract" />
+  <xs:complexType name="BiometricSignatureBeginResponseBasic">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="biometricState" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="instance" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BiometricSignatureBeginResponseBasic" nillable="true" type="tns:BiometricSignatureBeginResponseBasic" />
+  <xs:complexType name="ArrayOfOfflineBiometricSignature">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OfflineBiometricSignature" nillable="true" type="tns:OfflineBiometricSignature" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOfflineBiometricSignature" nillable="true" type="tns:ArrayOfOfflineBiometricSignature" />
+  <xs:complexType name="OfflineBiometricSignature">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="account" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SealSignBSSTypes" minOccurs="0" name="biometricOptions" type="q1:BiometricSignatureFlags" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SealSignBSSTypes" minOccurs="0" name="biometricParameters" nillable="true" type="q2:BiometricSignatureParameters" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SealSignBSSTypes" minOccurs="0" name="biometricSignatureType" type="q3:BiometricSignatureType" />
+      <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="instance" type="ser:guid" />
+      <xs:element minOccurs="0" name="offlineBiometricState" nillable="true" type="xs:base64Binary" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SealSignDSSTypes" minOccurs="0" name="options" type="q4:SignatureFlags" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SealSignDSSTypes" minOccurs="0" name="parameters" nillable="true" type="q5:SignatureParameters" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OfflineBiometricSignature" nillable="true" type="tns:OfflineBiometricSignature" />
+  <xs:complexType name="ArrayOfOfflineBiometricSignatureProvider">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OfflineBiometricSignatureProvider" nillable="true" type="tns:OfflineBiometricSignatureProvider" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOfflineBiometricSignatureProvider" nillable="true" type="tns:ArrayOfOfflineBiometricSignatureProvider" />
+  <xs:complexType name="OfflineBiometricSignatureProvider">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="account" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="instance" type="ser:guid" />
+      <xs:element minOccurs="0" name="offlineBiometricState" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="providerParameter" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="uri" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OfflineBiometricSignatureProvider" nillable="true" type="tns:OfflineBiometricSignatureProvider" />
+</xs:schema>
