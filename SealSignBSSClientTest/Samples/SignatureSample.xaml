@@ -14,8 +14,6 @@
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
             <Button Name="botonBorrar" Width="100" Margin="5" Click="OnBorrarClick">Borrar</Button>
             <Button Name="botonFirmar" Width="100" Margin="5" Click="OnFirmarClick">Firmar</Button>
-            <Button Name="botonFondo" Width="100" Margin="5" Click="OnFondoClick">Fondo</Button>
-            <Button Name="botonBotones" Width="100" Margin="5" Click="OnBotonesClick">Botones</Button>
         </StackPanel>
     </Grid>
 </local:SampleBase>

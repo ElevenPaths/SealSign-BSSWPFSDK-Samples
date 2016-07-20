@@ -1,5 +1,7 @@
-﻿using SealSignBSSClientTest.BiometricAuthenticationService;
+﻿using SealSignBSSClientLibrary;
+using SealSignBSSClientTest.BiometricAuthenticationService;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -55,13 +57,16 @@ namespace SealSignBSSClientTest.Samples
             botonBorrar.IsEnabled = true;
         }
 
-        private void OnVerificarClick(object sender, RoutedEventArgs e)
+        private async void OnVerificarClick(object sender, RoutedEventArgs e)
+        {
+            await Verify();
+        }
+
+        private async Task Verify()
         {
             botonEnrolar.IsEnabled = false;
             botonVerificar.IsEnabled = false;
-            botonBorrar.IsEnabled = false;
-
-            double score = 0.0;
+            botonBorrar.IsEnabled = false;            
 
             _signaturePanel.Stop();
 
@@ -69,8 +74,9 @@ namespace SealSignBSSClientTest.Samples
 
             byte[] biometricFinalState = _signaturePanel.GetSignature(Guid.Empty, null);
 
-            bool verificationResult = service.Verify(BiometricAuthenticationType.Signature,
-                biometricFinalState, out score);
+            VerifyRequest request = new VerifyRequest(BiometricAuthenticationType.Signature, biometricFinalState);
+
+            var verificationResult = await service.VerifyAsync(request);
 
             service.Close();
 
@@ -79,6 +85,18 @@ namespace SealSignBSSClientTest.Samples
             botonEnrolar.IsEnabled = true;
             botonVerificar.IsEnabled = true;
             botonBorrar.IsEnabled = true;
+        }
+
+        public override async Task ButtonClick(SealSignBSSPanelButtonEvent e)
+        {
+            if (e.Button.Equals("OK", StringComparison.InvariantCultureIgnoreCase))
+            {
+                await Verify();
+            }
+            else if (e.Button.Equals("Cancel", StringComparison.InvariantCultureIgnoreCase))
+            {
+                OnBorrarClick(this, null);
+            }            
         }
     }
 }

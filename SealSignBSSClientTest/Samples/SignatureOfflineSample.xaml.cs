@@ -4,6 +4,8 @@ using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using SealSignBSSClientLibrary;
+using System.Threading.Tasks;
 
 namespace SealSignBSSClientTest.Samples
 {
@@ -26,7 +28,7 @@ namespace SealSignBSSClientTest.Samples
 
         protected override void SampleBase_Unloaded(object sender, RoutedEventArgs e)
         {
-            if (_signaturePanel != null && RootGrid.Children.Contains((UIElement) _signaturePanel))
+            if (_signaturePanel != null && RootGrid.Children.Contains((UIElement)_signaturePanel))
             {
                 RootGrid.Children.Remove((UIElement)_signaturePanel);
             }
@@ -34,6 +36,11 @@ namespace SealSignBSSClientTest.Samples
         }
 
         private async void OnFirmarClick(object sender, RoutedEventArgs e)
+        {
+            await Sign();
+        }
+
+        private async Task Sign()
         {
             botonFirmar.IsEnabled = false;
             botonBorrar.IsEnabled = false;
@@ -83,6 +90,18 @@ namespace SealSignBSSClientTest.Samples
 
             botonFirmar.IsEnabled = true;
             botonBorrar.IsEnabled = true;
+        }
+
+        public override async Task ButtonClick(SealSignBSSPanelButtonEvent e)
+        {
+            if (e.Button.Equals("OK", StringComparison.InvariantCultureIgnoreCase))
+            {
+                await Sign();
+            }
+            else if (e.Button.Equals("Cancel", StringComparison.InvariantCultureIgnoreCase))
+            {
+                OnBorrarClick(this, null);
+            }
         }
     }
 }

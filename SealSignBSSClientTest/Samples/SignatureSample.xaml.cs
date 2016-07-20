@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SealSignBSSClientTest.Samples
 {
-    public partial class SignatureSample : SampleBase, ISealSignBSSEventListener
+    public partial class SignatureSample : SampleBase
     {
         public SignatureSample() : base()
         {
@@ -38,6 +38,11 @@ namespace SealSignBSSClientTest.Samples
         }
 
         private async void OnFirmarClick(object sender, RoutedEventArgs e)
+        {
+            await Sign();
+        }
+
+        private async Task Sign()
         {
             botonFirmar.IsEnabled = false;
             botonBorrar.IsEnabled = false;
@@ -87,37 +92,16 @@ namespace SealSignBSSClientTest.Samples
             botonBorrar.IsEnabled = true;
         }
 
-        private void OnFondoClick(object sender, RoutedEventArgs e)
+        public override async Task ButtonClick(SealSignBSSPanelButtonEvent e)
         {
-            _signaturePanel.Stop();
-            System.Drawing.Image image = System.Drawing.Image.FromFile(@"C:\Users\fernando.delahermosa\Pictures\poil00.jpg");
-            _signaturePanel.SetBackgroundImage(image);
-            _signaturePanel.Start();
-        }
-
-        private void OnBotonesClick(object sender, RoutedEventArgs e)
-        {
-            _signaturePanel.ClearButtonArea();
-
-            _signaturePanel.SetButtonArea("Firmar", 0, 0, 100, 50);
-            _signaturePanel.SetButtonArea("Borrar", 0, 60, 100, 50);
-
-            _signaturePanel.AddEventListener(this);
-        }
-
-        public void SignatureStarted()
-        {
-            
-        }
-
-        public void SignatureCleared()
-        {
-            
-        }
-
-        public Task ButtonClick(SealSignBSSPanelButtonEvent e)
-        {
-            return Task.FromResult<int>(0);
+            if (e.Button.Equals("OK", StringComparison.InvariantCultureIgnoreCase))
+            {
+                await Sign();
+            }
+            else if (e.Button.Equals("Cancel", StringComparison.InvariantCultureIgnoreCase))
+            {
+                OnBorrarClick(this, null);
+            }
         }
     }
 }

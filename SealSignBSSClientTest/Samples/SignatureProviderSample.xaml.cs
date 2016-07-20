@@ -1,5 +1,8 @@
-﻿using SealSignBSSClientTest.BiometrisSignatureService;
+﻿using SealSignBSSClientLibrary;
+using SealSignBSSClientTest.BiometrisSignatureService;
+using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -33,6 +36,11 @@ namespace SealSignBSSClientTest.Samples
 
         private async void OnFirmarClick(object sender, RoutedEventArgs e)
         {
+            await Sign();
+        }
+
+        private async Task Sign()
+        {
             botonFirmar.IsEnabled = false;
             botonBorrar.IsEnabled = false;
             _signaturePanel.Stop();
@@ -62,6 +70,18 @@ namespace SealSignBSSClientTest.Samples
             _signaturePanel.Start();
             botonFirmar.IsEnabled = true;
             botonBorrar.IsEnabled = true;
+        }
+
+        public override async Task ButtonClick(SealSignBSSPanelButtonEvent e)
+        {
+            if (e.Button.Equals("OK", StringComparison.InvariantCultureIgnoreCase))
+            {
+                await Sign();
+            }
+            else if (e.Button.Equals("Cancel", StringComparison.InvariantCultureIgnoreCase))
+            {
+                OnBorrarClick(this, null);
+            }
         }
     }
 }
